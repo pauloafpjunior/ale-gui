@@ -28,9 +28,13 @@ public class Player : MonoBehaviour
     private float coyoteTime;
     private float coyoteDuration = 0.1f;    
 
+    // Animation
+    private Animator anim;
+
     void Start() 
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -70,6 +74,8 @@ public class Player : MonoBehaviour
     {
         float xVelocity = speed * horizontal;
         float yVelocity = rb.velocity.y;
+
+        anim.SetInteger("xVelocity", Mathf.Abs((int) xVelocity));
 
         if (direction * xVelocity < 0) {
             Flip();
