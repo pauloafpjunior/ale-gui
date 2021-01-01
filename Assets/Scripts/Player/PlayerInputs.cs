@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerInputs : MonoBehaviour
 {
     public float horizontal { get; private set; }
-    public bool jump { get; private set; }
+    public bool jumpPressed { get; private set; }
 
     private bool readyToClear;
 
@@ -28,15 +28,33 @@ public class PlayerInputs : MonoBehaviour
         }
 
         horizontal = 0f;
-        jump = false;
+        jumpPressed = false;
         readyToClear = false;
     }
 
     private void ProcessInputs() 
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-        jump =  jump || Input.GetButtonDown("Jump");
+        jumpPressed =  jumpPressed || Input.GetButtonDown("Jump");
+    }
 
-        print(horizontal + " - " + jump);
+    public void OnLeftButtonPressed() 
+    {
+        horizontal = -1f;
+    }
+
+    public void OnRightButtonPressed() 
+    {
+        horizontal = 1f;
+    }
+
+    public void JumpPressed() 
+    {
+        jumpPressed = true;
+    }
+
+    public void JumpReleased() 
+    {
+        jumpPressed = false;
     }
 }
