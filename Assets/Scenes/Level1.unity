@@ -2812,8 +2812,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1455788524}
-          m_MethodName: Jump
-          m_Mode: 6
+          m_MethodName: OnJumpButtonPressed
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2827,8 +2827,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1455788524}
-          m_MethodName: Jump
-          m_Mode: 6
+          m_MethodName: OnJumpButtonReleased
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4189,8 +4189,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1455788524}
-          m_MethodName: MoveRight
-          m_Mode: 6
+          m_MethodName: OnRightButtonPressed
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4204,8 +4204,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1455788524}
-          m_MethodName: MoveRight
-          m_Mode: 6
+          m_MethodName: OnRightButtonReleased
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4433,8 +4433,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1455788524}
-          m_MethodName: MoveLeft
-          m_Mode: 6
+          m_MethodName: OnLeftButtonPressed
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4448,8 +4448,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1455788524}
-          m_MethodName: MoveLeft
-          m_Mode: 6
+          m_MethodName: OnLeftButtonReleased
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

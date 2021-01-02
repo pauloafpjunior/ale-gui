@@ -6,10 +6,10 @@ public class Player : MonoBehaviour
 {
     // Inputs
     private float horizontal;
-    private bool jumpPressed;
+    private bool jumpPressed, attackPressed;
 
     // Touch inputs
-    private bool isMovingLeft, isMovingRight, isJumping;
+    private bool isLeftButtonPressed, isRightButtonPressed, isJumpButtonPressed, isAttackButtonPressed;
     
     [SerializeField] private float speed = 5;
     private Rigidbody2D rb;
@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     // Animation
     private Animator anim;
 
+    // Attack
+    private bool isAttacking;
+
     void Start() 
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,16 +49,14 @@ public class Player : MonoBehaviour
     {
         GroundMovement();
         GroundCheck();  
-        JumpMovement();      
+        JumpMovement();   
+        AttackMovement();   
     }
 
     private RaycastHit2D Raycast(Vector2 offset, Vector2 direction, float length) 
     {
         Vector2 currentPlayerPosition = transform.position;
         return Physics2D.Raycast(currentPlayerPosition + offset, direction, length, groundLayer);
-        // Color color = hit ? Color.red : Color.green;
-        // Debug.DrawRay(currentPlayerPosition + offset, direction * length, color);
-        // return hit;
     }
 
     private void GroundCheck()
@@ -100,6 +101,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void AttackMovement() 
+    {
+        if (attackPressed && !isAttacking) {
+            anim.SetTrigger("attack");
+            isAttacking = true;
+        }
+    }
+
+    private void OnAttackFinished() 
+    {
+        isAttacking = false;
+    }
+
     private void Flip() 
     {
         direction *= -1;
@@ -110,23 +124,23 @@ public class Player : MonoBehaviour
 
     private void ProcessInputs() 
     {
-        if (isMovingLeft)  horizontal = -1.0f;
-        else if (isMovingRight) horizontal = 1.0f;
+        if (isLeftButtonPressed)  horizontal = -1.0f;
+        else if (isRightButtonPressed) horizontal = 1.0f;
         else horizontal = Input.GetAxisRaw("Horizontal");
 
-        if (isJumping) jumpPressed = true;    
-        else jumpPressed = Input.GetButtonDown("Jump");
+        jumpPressed = isJumpButtonPressed || Input.GetButtonDown("Jump");
+        attackPressed = isAttackButtonPressed || Input.GetButtonDown("Fire1");
     }
 
-    public void MoveLeft(bool value) {
-        isMovingLeft = value;
-    }
-    
-    public void MoveRight(bool value) {
-        isMovingRight = value;
-    }
+    public void OnLeftButtonPressed() { isLeftButtonPressed = true; }
+    public void OnLeftButtonReleased() { isLeftButtonPressed = false; }
 
-    public void Jump(bool value) {
-        isJumping = value;
-    }
+    public void OnRightButtonPressed() { isRightButtonPressed = true; }
+    public void OnRightButtonReleased() { isRightButtonPressed = false; }
+
+    public void OnJumpButtonPressed() { isJumpButtonPressed = true; }
+    public void OnJumpButtonReleased() { isJumpButtonPressed = false; }
+
+    public void OnAttackButtonPressed() { isAttackButtonPressed = true; }
+    public void OnAttackButtonReleased() { isAttackButtonPressed = false; }
 }
