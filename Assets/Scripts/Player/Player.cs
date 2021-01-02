@@ -92,6 +92,10 @@ public class Player : MonoBehaviour
         if (isOnGround) {
             coyoteTime = Time.time + coyoteDuration;    
         } 
+
+        if (isAttacking && isOnGround) {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
     }
 
     public void JumpMovement() 
@@ -110,12 +114,14 @@ public class Player : MonoBehaviour
     {
         if (attackPressed && !isAttacking) {
             anim.SetTrigger("attack");
-            isAttacking = true;
+            StartCoroutine("OnAttackFinished");
         }
     }
 
-    private void OnAttackFinished() 
+    IEnumerator OnAttackFinished() 
     {
+        isAttacking = true;
+        yield return new WaitForSeconds(1f);
         isAttacking = false;
     }
 
