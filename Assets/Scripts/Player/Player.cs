@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
     // Animation
     private Animator anim;
 
-    // Attack
     private bool isAttacking;
 
     void Start() 
@@ -91,12 +90,8 @@ public class Player : MonoBehaviour
         anim.SetFloat("yVelocity", yVelocity);
 
         if (isOnGround) {
-            coyoteTime = Time.time + coyoteDuration;            
+            coyoteTime = Time.time + coyoteDuration;    
         } 
-
-        if (isAttacking && isOnGround) {
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-        }
     }
 
     public void JumpMovement() 
