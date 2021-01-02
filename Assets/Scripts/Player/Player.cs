@@ -47,8 +47,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        GroundMovement();
         GroundCheck();  
+        GroundMovement();
         JumpMovement();   
         AttackMovement();   
     }
@@ -76,23 +76,32 @@ public class Player : MonoBehaviour
         float xVelocity = speed * horizontal;
         float yVelocity = rb.velocity.y;
 
-        anim.SetInteger("xVelocity", Mathf.Abs((int) xVelocity));
-
         if (direction * xVelocity < 0) {
             Flip();
         }
 
         rb.velocity = new Vector2(xVelocity, yVelocity);    
 
+        anim.SetInteger("xVelocity", Mathf.Abs((int) xVelocity));
+        anim.SetBool("isOnGround", isOnGround);
+        anim.SetBool("isAttacking", isAttacking);
+        anim.SetFloat("yVelocity", yVelocity);
+
         if (isOnGround) {
-            coyoteTime = Time.time + coyoteDuration;
-        }   
+            coyoteTime = Time.time + coyoteDuration;            
+        } 
+
+            if (isAttacking && isOnGround) {
+                rb.velocity = new Vector2(0f, rb.velocity.y);
+            }
+
+
     }
 
     public void JumpMovement() 
     {
         if (jumpPressed && (isOnGround || coyoteTime > Time.time)) {
-            rb.velocity = new Vector2(rb.velocity.x, 0f);
+            rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
 
@@ -106,6 +115,7 @@ public class Player : MonoBehaviour
         if (attackPressed && !isAttacking) {
             anim.SetTrigger("attack");
             isAttacking = true;
+
         }
     }
 
