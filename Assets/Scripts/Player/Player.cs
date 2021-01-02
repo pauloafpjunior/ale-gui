@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
     // Animation
     private Animator anim;
 
-    private bool isAttacking;
+    private bool isAttacking, isJumping;
 
     void Start() 
     {
@@ -48,8 +48,8 @@ public class Player : MonoBehaviour
     {
         GroundCheck();  
         GroundMovement();
-        JumpMovement();   
-        AttackMovement();   
+        if (jumpPressed) JumpMovement();   
+        if (attackPressed) AttackMovement();   
     }
 
     private RaycastHit2D Raycast(Vector2 offset, Vector2 direction, float length) 
@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
 
         if (isOnGround) {
             coyoteTime = Time.time + coyoteDuration;    
+            isJumping = false;
         } 
 
         if (isAttacking && isOnGround) {
@@ -100,7 +101,8 @@ public class Player : MonoBehaviour
 
     public void JumpMovement() 
     {
-        if (jumpPressed && (isOnGround || coyoteTime > Time.time)) {
+        if (!isJumping && (isOnGround || coyoteTime > Time.time)) {
+            isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, 0f);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
@@ -110,9 +112,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void AttackMovement() 
+    public void AttackMovement() 
     {
-        if (attackPressed && !isAttacking) {
+        if (!isAttacking) {
             anim.SetTrigger("attack");
             StartCoroutine("OnAttackFinished");
         }
@@ -121,7 +123,7 @@ public class Player : MonoBehaviour
     IEnumerator OnAttackFinished() 
     {
         isAttacking = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.6f);
         isAttacking = false;
     }
 
@@ -139,8 +141,8 @@ public class Player : MonoBehaviour
         else if (isRightButtonPressed) horizontal = 1.0f;
         else horizontal = Input.GetAxisRaw("Horizontal");
 
-        jumpPressed = isJumpButtonPressed || Input.GetButtonDown("Jump");
-        attackPressed = isAttackButtonPressed || Input.GetButtonDown("Fire1");
+        jumpPressed = Input.GetButtonDown("Jump");
+        attackPressed = Input.GetButtonDown("Fire1");
     }
 
     public void OnLeftButtonPressed() { isLeftButtonPressed = true; }
