@@ -2250,8 +2250,8 @@ GameObject:
   m_Component:
   - component: {fileID: 745275074}
   - component: {fileID: 745275077}
-  - component: {fileID: 745275076}
   - component: {fileID: 745275075}
+  - component: {fileID: 745275076}
   m_Layer: 9
   m_Name: Double platform
   m_TagString: Untagged
@@ -2290,7 +2290,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 150
+  m_SurfaceArc: 160
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -2307,7 +2307,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0.98765194, y: 0.38647273}
+  m_Offset: {x: 1.0030307, y: 0.40415752}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2318,7 +2318,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.975304, y: 0.22705454}
+  m_Size: {x: 3.0060604, y: 0.19168496}
   m_EdgeRadius: 0
 --- !u!212 &745275077
 SpriteRenderer:
@@ -4211,7 +4211,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.033033133, y: 0.72687864}
+  m_Offset: {x: -0.02225566, y: 0.72687864}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -4222,7 +4222,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9180951, y: 1.4308574}
+  m_Size: {x: 0.72409964, y: 1.4308574}
   m_EdgeRadius: 0
 --- !u!114 &1455788524
 MonoBehaviour:
