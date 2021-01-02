@@ -15,12 +15,12 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private int direction = 1;
     private float maxFallSpeed = -10f;
-    private float jumpForce = 8f;
+    private float jumpForce = 7.8f;
 
     // Ground check
     [SerializeField] private LayerMask groundLayer;
     private bool isOnGround;
-    private float xOffset = .4f; 
+    private float xOffset = .3f; 
     private float yOffset = .05f;
     private float groundDistance = .2f;
 
@@ -56,7 +56,10 @@ public class Player : MonoBehaviour
     private RaycastHit2D Raycast(Vector2 offset, Vector2 direction, float length) 
     {
         Vector2 currentPlayerPosition = transform.position;
-        return Physics2D.Raycast(currentPlayerPosition + offset, direction, length, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(currentPlayerPosition + offset, direction, length, groundLayer);
+        Color color = hit ? Color.red : Color.green;
+        Debug.DrawRay(currentPlayerPosition + offset, direction * length, color);
+        return hit;
     }
 
     private void GroundCheck()
