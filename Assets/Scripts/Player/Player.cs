@@ -91,17 +91,15 @@ public class Player : MonoBehaviour
             coyoteTime = Time.time + coyoteDuration;            
         } 
 
-            if (isAttacking && isOnGround) {
-                rb.velocity = new Vector2(0f, rb.velocity.y);
-            }
-
-
+        if (isAttacking && isOnGround) {
+            rb.velocity = new Vector2(0f, rb.velocity.y);
+        }
     }
 
     public void JumpMovement() 
     {
         if (jumpPressed && (isOnGround || coyoteTime > Time.time)) {
-            rb.velocity = Vector2.zero;
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
 
@@ -115,7 +113,6 @@ public class Player : MonoBehaviour
         if (attackPressed && !isAttacking) {
             anim.SetTrigger("attack");
             isAttacking = true;
-
         }
     }
 
