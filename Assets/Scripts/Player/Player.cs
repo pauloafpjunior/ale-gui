@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     private bool jumpPressed, attackPressed;
 
     // Touch inputs
-    private bool isLeftButtonPressed, isRightButtonPressed, isJumpButtonPressed, isAttackButtonPressed;
+    private bool isLeftButtonPressed, isRightButtonPressed;
     
     [SerializeField] private float speed = 5;
     private Rigidbody2D rb;
@@ -150,10 +150,4 @@ public class Player : MonoBehaviour
 
     public void OnRightButtonPressed() { isRightButtonPressed = true; }
     public void OnRightButtonReleased() { isRightButtonPressed = false; }
-
-    public void OnJumpButtonPressed() { isJumpButtonPressed = true; }
-    public void OnJumpButtonReleased() { isJumpButtonPressed = false; }
-
-    public void OnAttackButtonPressed() { isAttackButtonPressed = true; }
-    public void OnAttackButtonReleased() { isAttackButtonPressed = false; }
 }
