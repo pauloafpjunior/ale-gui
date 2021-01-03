@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     // Ground check
     [SerializeField] private LayerMask groundLayer;
     private bool isOnGround;
-    private float xOffset = .3f; 
+    private float xOffset = .35f; 
     private float yOffset = .05f;
     private float groundDistance = .2f;
 
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
         anim.SetInteger("xVelocity", Mathf.Abs((int) xVelocity));
         anim.SetBool("isOnGround", isOnGround);
         anim.SetBool("isAttacking", isAttacking);
-        anim.SetFloat("yVelocity", yVelocity);
+        anim.SetInteger("yVelocity", (int) yVelocity);
 
         if (isOnGround) {
             coyoteTime = Time.time + coyoteDuration;    
